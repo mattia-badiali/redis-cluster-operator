@@ -47,14 +47,17 @@ fi`
 	// see more https://github.com/antirez/redis/issues/4645.
 	fixIPContent := `#!/bin/sh
 CLUSTER_CONFIG="/data/nodes.conf"
-if [ -f ${CLUSTER_CONFIG} ]; then
-    if [ -z "${POD_IP}" ]; then
+REDIS_CONFIG="/conf/redis.conf"
+if [ -z "${POD_IP}" ]; then
     echo "Unable to determine Pod IP address!"
     exit 1
-    fi
+fi
+if [ -f ${CLUSTER_CONFIG} ]; then
     echo "Updating my IP to ${POD_IP} in ${CLUSTER_CONFIG}"
     sed -i.bak -e "/myself/ s/ .*:6379@16379/ ${POD_IP}:6379@16379/" ${CLUSTER_CONFIG}
 fi
+echo "Setting in ${REDIS_CONFIG} cluster-announce-ip ${POD_IP}"
+echo "cluster-announce-ip ${POD_IP}" >> ${REDIS_CONFIG}
 exec "$@"`
 
 	redisConfContent := generateRedisConfContent(cluster.Spec.Config)
