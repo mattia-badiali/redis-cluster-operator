@@ -1,5 +1,16 @@
 apiVersion: v1
 entries:
+  redis-cluster:
+  - apiVersion: v2
+    appVersion: 0.1.0
+    created: "2021-03-31T09:32:51.107519189Z"
+    description: A Helm chart for Kubernetes
+    digest: 4bed93dab97f4a780a8fe4f0b64a5a1b4f13fbcf98cec99ec7ff5b90c201c1cd
+    name: redis-cluster
+    type: application
+    urls:
+    - https://github.com/mattia-badiali/redis-cluster-operator/releases/download/redis-cluster-0.1.0/redis-cluster-0.1.0.tgz
+    version: 0.1.0
   redis-cluster-operator:
   - apiVersion: v2
     appVersion: 0.1.0
@@ -11,4 +22,4 @@ entries:
     urls:
     - https://github.com/mattia-badiali/redis-cluster-operator/releases/download/redis-cluster-operator-0.1.0/redis-cluster-operator-0.1.0.tgz
     version: 0.1.0
-generated: "2021-03-30T10:19:49.408420279Z"
+generated: "2021-03-31T09:32:54.250227294Z"
