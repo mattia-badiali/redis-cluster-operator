@@ -27,7 +27,6 @@ operator:
 
 data:
   redis_conf: |-
-    rename-command CONFIG lni07z1p
     rename-command BGSAVE pp14qluk
     rename-command DEBUG 8a4insyv
     rename-command SAVE 6on30p6z

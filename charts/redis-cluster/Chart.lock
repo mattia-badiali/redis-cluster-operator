@@ -1,0 +1,6 @@
+dependencies:
+- name: redis-cluster-operator
+  repository: https://mattia-badiali.github.io/redis-cluster-operator/
+  version: 0.1.0
+digest: sha256:2d001881be5b2f5cd2f8ae2637493a25837aeb996b9d6077b68ae264679aff9d
+generated: "2021-03-31T10:59:02.566635148+02:00"

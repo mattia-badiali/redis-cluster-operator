@@ -7,8 +7,8 @@ metadata:
   name: example-distributedrediscluster
 spec:
   image: redis:5.0.4-alpine
-  masterSize: 3
-  clusterReplicas: 1
+  masterSize: {{ .Values.redis.masterSize }}
+  clusterReplicas: {{ .Values.redis.replicas }}
   securityContext:
     runAsUser: 1101
     runAsGroup: 1101

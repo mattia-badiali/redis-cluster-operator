@@ -1,0 +1,69 @@
+# Default values for redis-cluster.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+
+images:
+  redis:
+    repository: ""
+    pullPolicy: IfNotPresent
+    # Overrides the image tag whose default is the chart appVersion.
+    tag: "5.0.4-alpine"
+    name: "redis"
+  monitor:
+    repository: ""
+    pullPolicy: IfNotPresent
+    # Overrides the image tag whose default is the chart appVersion.
+    tag: "v1.20.0-alpine"
+    name: "oliver006/redis_exporter"
+
+nameOverride: ""
+fullnameOverride: ""
+
+redis-cluster-operator:
+  enabled: true
+  operator:
+    image_source: "mttbadiali/redis-cluster-operator"
+    image_tag: "latest"
+    #use empty string as namespace if you need cluster roles instead of roles
+    namespace: "Release.namespace"
+
+redis:
+  masterSize: 3
+  replicas: 0
+  monitor:
+    enabled: false
+  operatorClusterScoped: true
+  securityContext: {}
+  #  runAsUser: 1101
+  #  runAsGroup: 1101
+  #  fsGroup: 1101
+  #  supplementalGroups: [1101]
+  containerSecurityContext: {}
+  #  allowPrivilegeEscalation: false
+  #  capabilities:
+  #    drop:
+  #      - ALL
+  config:
+    appendonly: "yes"
+    save: ""
+  resources:
+    limits:
+      cpu: 2
+      memory: 2Gi
+    requests:
+      cpu: 0m
+      memory: 0Mi
+  storage:
+    enabled: true
+    type: persistent-claim
+    size: 10Mi
+    class: local-path
+    deleteClaim: true
+  serviceName:
+    enabled: false
+    value: redis-svc
+  password:
+    enabled: false
+    value: "Empirix123"
+

@@ -9,7 +9,7 @@ metadata:
 subjects:
 - kind: ServiceAccount
   name: redis-cluster-operator
-  namespace: {{.Release.Namespace}}
+  namespace: {{ $.Release.Namespace }}
 roleRef:
   kind: ClusterRole
   name: redis-cluster-operator
