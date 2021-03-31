@@ -4,9 +4,11 @@ operator:
   replicas: 1
   service_account_name: "redis-cluster-operator"
   namespace: ""  # keep this value "" if you want to deploy cluster-wide operator
-  image_source: "docker.pkg.github.com/mattia-badiali/redis-cluster-operator/image"
+  image_source: "mttbadiali/redis-cluster-operator"
   image_tag: "latest"
   imagePullPolicy: "Always"
+  imagePullSecret:
+    - name: registry-secret
   resources:
     limits:
       cpu: 200m

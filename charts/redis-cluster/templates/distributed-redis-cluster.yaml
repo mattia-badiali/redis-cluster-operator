@@ -13,7 +13,7 @@ spec:
   clusterReplicas: {{ .Values.redis.replicas }}
   {{- if .Values.redis.storage.enabled }}
   storage:
-  {{ toYaml .Values.redis.storage | indent 4 }}
+    {{- toYaml .Values.redis.storage | nindent 4 }}
   {{- end }}
   {{- if .Values.redis.serviceName.enabled }}
   serviceName: {{ .Values.redis.serviceName.value }}
@@ -23,17 +23,16 @@ spec:
     name: {{ include "redis-cluster.fullname" .}}
   {{- end }}
   resources:
-    {{ toYaml .Values.redis.config | indent 4 }}
+    {{- toYaml .Values.redis.config | nindent 4 }}
   {{- if .Values.redis.monitor.enabled }}
   monitor:
     image: {{ .Values.images.monitor.repository }}{{.Values.images.monitor.name }}:{{ .Values.images.monitor.tag }}
   {{- end }}
   config:
-    {{ toYaml .Values.redis.config | indent 4 }}
-
+    {{- toYaml .Values.redis.config | nindent 4 }}
 
   securityContext:
-    {{- toYaml .Values.redis.securityContext | indent 4 }}
+    {{- toYaml .Values.redis.securityContext | nindent 4 }}
   containerSecurityContext:
-    {{- toYaml .Values.redis.securityContext | indent 4 }}
+    {{- toYaml .Values.redis.securityContext | nindent 4 }}
 

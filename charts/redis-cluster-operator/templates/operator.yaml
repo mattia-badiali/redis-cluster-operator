@@ -12,6 +12,8 @@ spec:
       labels:
         name: {{ .Values.operator.name }}
     spec:
+      imagePullSecrets:
+        {{- toYaml .Values.operator.imagePullSecret | nindent 8 }}
       serviceAccountName: {{ .Values.operator.service_account_name }}
       securityContext:
         {{- .Values.operator.podsecurityContext | toYaml | nindent 8 }}
