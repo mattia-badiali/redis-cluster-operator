@@ -81,3 +81,6 @@ vendor/*
 /Dockerfile-withvendor
 Dockerfile-TZSH
 skaffold.yaml
+#subcharts generated files
+/charts/redis-cluster/charts/
+/charts/redis-cluster/Chart.lock
