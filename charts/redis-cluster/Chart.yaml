@@ -23,8 +23,8 @@ version: 0.1.0
 appVersion: 0.1.0
 
 
-dependencies:
-  - name: redis-cluster-operator
-    repository: "https://mattia-badiali.github.io/redis-cluster-operator/"
-    version: "0.1.0"
-    condition: redis-cluster-operator.enabled
+#dependencies:
+#  - name: redis-cluster-operator
+#    repository: "https://mattia-badiali.github.io/redis-cluster-operator/"
+#    version: "0.1.0"
+#    condition: redis-cluster-operator.enabled

@@ -18,7 +18,7 @@ jobs:
 
       - name: Helm tool installer
         uses: Azure/setup-helm@v1.1
-        
+
       - name: Add Helm repos
         run: |
           helm repo add foo https://mattia-badiali.github.io/redis-cluster-operator/
