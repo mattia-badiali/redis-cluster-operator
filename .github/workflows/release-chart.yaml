@@ -24,5 +24,6 @@ jobs:
           helm repo add foo https://mattia-badiali.github.io/redis-cluster-operator/
       - name: Run chart-releaser
         uses: helm/chart-releaser-action@master
+        charts_dir: "charts/redis-cluster-operator"
         env:
           CR_TOKEN: '${{ secrets.CR_TOKEN }}'
