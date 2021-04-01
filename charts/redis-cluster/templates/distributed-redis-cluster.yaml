@@ -34,9 +34,20 @@ spec:
   {{- end }}
   config:
     {{- toYaml .Values.redis.config | nindent 4 }}
-
+  requiredAntiAffinity: {{ .Values.redis.requiredAntiAffinity }}
+  annotations:
+    {{- toYaml .Values.redis.annotations | nindent 4 }}
+  env:
+    {{- toYaml .Values.redis.envVars | nindent 4 }}
   securityContext:
     {{- toYaml .Values.redis.securityContext | nindent 4 }}
   containerSecurityContext:
     {{- toYaml .Values.redis.securityContext | nindent 4 }}
-
+  toleRations:
+    {{- toYaml .Values.redis.tolerations | nindent 4 }}
+  nodeSelector:
+    {{- toYaml .Values.redis.nodeSelector | nindent 4 }}
+  affinity:
+    {{- toYaml .Values.redis.affinity | nindent 4 }}
+  init:
+    {{- toYaml .Values.redis.initContainer | nindent 4 }}

@@ -2,7 +2,6 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
-
 images:
   redis:
     repository: ""
@@ -10,6 +9,8 @@ images:
     # Overrides the image tag whose default is the chart appVersion.
     tag: "5.0.4-alpine"
     name: "redis"
+    imagePullSecrets:
+      - name: registry-secret
   monitor:
     repository: ""
     pullPolicy: IfNotPresent
@@ -25,9 +26,10 @@ redis-cluster-operator:
   operator:
     image_source: "mttbadiali/redis-cluster-operator"
     image_tag: "latest"
+    imagePullSecret:
+      - name: registry-secret
     #use empty string as namespace if you need cluster roles instead of roles
     namespace: ""
-
 
 redis:
   masterSize: 3
@@ -67,6 +69,17 @@ redis:
   password:
     enabled: false
     value: "Empirix123"
+  # default is preferredAntiAffinity
+  requiredAntiAffinity: "true"
+  annotations: {}
+  #    sidecar.istio.io/inject: "false"
+  envVars: []
+  #  - name: example
+  #    value: test
+  nodeSelector: {}
+  tolerations: []
+  affinity: {}
+  initContainer: {}
 
 test:
   redis:
