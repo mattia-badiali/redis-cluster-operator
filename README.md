@@ -28,6 +28,7 @@ Table of Contents
             * [Install Step by step](#install-step-by-step)
             * [Install using helm chart](#install-using-helm-chart)
          * [Usage](#usage)
+            * [Deploy Redis Cluster Chart](#deploy-redis-cluster-chart)
             * [Deploy a sample Redis Cluster](#deploy-a-sample-redis-cluster)
             * [Scaling Up the Redis Cluster](#scaling-up-the-redis-cluster)
             * [Scaling Down the Redis Cluster](#scaling-down-the-redis-cluster)
@@ -114,6 +115,11 @@ redis-cluster-operator   1/1     1            1           1d
 #### Deploy a sample Redis Cluster
 
 NOTE: **Only the redis cluster that use persistent storage(pvc) can recover after accidental deletion or rolling update.Even if you do not use persistence(like rdb or aof), you need to set pvc for redis.**
+
+```
+$ helm install redis-cluster redis-cluster
+```
+
 
 ```
 $ kubectl apply -f deploy/example/redis.kun_v1alpha1_distributedrediscluster_cr.yaml
