@@ -15,39 +15,73 @@ spec:
   image: {{ .Values.images.redis.repository }}{{.Values.images.redis.name }}:{{ .Values.images.redis.tag }}
   masterSize: {{ .Values.redis.masterSize }}
   clusterReplicas: {{ .Values.redis.replicas }}
+  requiredAntiAffinity: {{ .Values.redis.requiredAntiAffinity }}
+
   {{- if .Values.redis.storage.enabled }}
   storage:
     {{- toYaml .Values.redis.storage | nindent 4 }}
   {{- end }}
+
   {{- if .Values.redis.serviceName.enabled }}
   serviceName: {{ .Values.redis.serviceName.value }}
   {{- end }}
+
   {{- if .Values.redis.password.enabled }}
   passwordSecret:
     name: {{ include "empirix-redis-cluster.fullname" .}}
   {{- end }}
-  resources:
-    {{- toYaml .Values.redis.config | nindent 4 }}
+
   {{- if .Values.redis.monitor.enabled }}
   monitor:
     image: {{ .Values.images.monitor.repository }}{{.Values.images.monitor.name }}:{{ .Values.images.monitor.tag }}
   {{- end }}
+
+  {{- if .Values.redis.config}}
   config:
     {{- toYaml .Values.redis.config | nindent 4 }}
-  requiredAntiAffinity: {{ .Values.redis.requiredAntiAffinity }}
+  {{- end }}
+
+  {{- if .Values.redis.resources}}
+  resources:
+    {{- toYaml .Values.redis.resources | nindent 4 }}
+  {{- end }}
+
+  {{- if .Values.redis.annotations}}
   annotations:
     {{- toYaml .Values.redis.annotations | nindent 4 }}
+  {{- end }}
+
+  {{- if .Values.redis.envVars}}
   env:
     {{- toYaml .Values.redis.envVars | nindent 4 }}
+  {{- end }}
+
+  {{- if .Values.redis.securityContext}}
   securityContext:
     {{- toYaml .Values.redis.securityContext | nindent 4 }}
+  {{- end }}
+
+  {{- if .Values.redis.securityContext}}
   containerSecurityContext:
     {{- toYaml .Values.redis.securityContext | nindent 4 }}
+  {{- end }}
+
+  {{- if .Values.redis.tolerations}}
   toleRations:
     {{- toYaml .Values.redis.tolerations | nindent 4 }}
+  {{- end }}
+
+  {{- if .Values.redis.nodeSelector}}
   nodeSelector:
     {{- toYaml .Values.redis.nodeSelector | nindent 4 }}
+  {{- end }}
+
+  {{- if .Values.redis.affinity }}
   affinity:
     {{- toYaml .Values.redis.affinity | nindent 4 }}
+  {{- end }}
+
+  {{- if .Values.redis.initContainer}}
   init:
     {{- toYaml .Values.redis.initContainer | nindent 4 }}
+  {{- end }}

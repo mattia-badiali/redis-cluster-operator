@@ -33,7 +33,7 @@ redis-cluster-operator:
 
 redis:
   masterSize: 3
-  replicas: 0
+  replicas: 1
   monitor:
     enabled: false
   operatorClusterScoped: true
@@ -48,7 +48,7 @@ redis:
   #    drop:
   #      - ALL
   config:
-    appendonly: "yes"
+    appendonly: "no"
     save: ""
   resources:
     limits:
@@ -70,7 +70,7 @@ redis:
     enabled: false
     value: "Empirix123"
   # default is preferredAntiAffinity
-  requiredAntiAffinity: "true"
+  requiredAntiAffinity: true
   annotations: {}
   #    sidecar.istio.io/inject: "false"
   envVars: []
