@@ -57,10 +57,17 @@ fi
 if [ -f ${CLUSTER_CONFIG} ]; then
     echo "Updating my IP to ${POD_IP} in ${CLUSTER_CONFIG}"
     sed -i.bak -e "/myself/ s/ .*:6379@16379/ ${POD_IP}:6379@16379/" ${CLUSTER_CONFIG}
-    grep myself ${CLUSTER_CONFIG} | grep master
+    cat ${CLUSTER_CONFIG} | grep myself | grep master
     if [ $? -eq "0" ]; then
-        echo "Waiting 20 seconds for the failover"
-        sleep 20
+        masterID=$(cat ${CLUSTER_CONFIG} | grep "myself" | awk '{print $1}')
+        echo "Master: ${masterID}"
+        cat ${CLUSTER_CONFIG} | grep ${masterID} | grep "slave"
+        if [ $? -eq "0" ]; then
+        	slave=$(cat ${CLUSTER_CONFIG} | grep ${masterID} | grep "slave" | awk 'NR==1{print $2}' | sed 's/:6379@16379//')
+        	echo "Slave: ${slave}"
+            echo "Waiting 20 seconds for the failover"
+            sleep 20
+        fi
     fi
 fi
 echo "Creating config file ${REDIS_DST_CONFIG} from  ${REDIS_SRC_CONFIG}"
