@@ -1,4 +1,4 @@
-{{- if eq (len .Values.operator.namespace) 0 }}
+{{- if .Values.operator.clusterScoped }}
 kind: ClusterRoleBinding
 {{- else }}
 kind: RoleBinding
@@ -11,7 +11,7 @@ subjects:
   name: redis-cluster-operator
   namespace: {{ $.Release.Namespace }}
 roleRef:
-  {{- if eq (len .Values.operator.namespace) 0 }}
+  {{- if .Values.operator.clusterScoped }}
   kind: ClusterRole
   {{- else }}
   kind: Role

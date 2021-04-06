@@ -3,7 +3,7 @@ operator:
   name: "redis-cluster-operator"
   replicas: 1
   service_account_name: "redis-cluster-operator"
-  namespace: "default"  # keep this value "" if you want to deploy cluster-wide operator
+  clusterScoped: true
   image_source: "mttbadiali/redis-cluster-operator"
   image_tag: "latest"
   imagePullPolicy: "Always"

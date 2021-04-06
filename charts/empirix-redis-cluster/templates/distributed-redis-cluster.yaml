@@ -3,11 +3,9 @@ kind: DistributedRedisCluster
 metadata:
   annotations:
     # if your operator run as cluster-scoped, add this annotations
-    {{- if .Values.redis.operatorClusterScoped }}
     {{- with (index .Values "redis-cluster-operator") }}
-    {{- if (eq (len .operator.namespace) 0) }}
+    {{- if .operator.clusterScoped }}
     redis.kun/scope: cluster-scoped
-    {{- end }}
     {{- end }}
     {{- end }}
   name: {{ include "empirix-redis-cluster.fullname" .}}

@@ -22,8 +22,9 @@ nameOverride: ""
 fullnameOverride: ""
 
 redis-cluster-operator:
-  enabled: true
+  install: true
   operator:
+    clusterScoped: false
     image_source: "mttbadiali/redis-cluster-operator"
     image_tag: "latest"
     imagePullSecret:
@@ -36,7 +37,6 @@ redis:
   replicas: 1
   monitor:
     enabled: false
-  operatorClusterScoped: true
   securityContext: {}
   #  runAsUser: 1101
   #  runAsGroup: 1101
