@@ -57,9 +57,15 @@ fi
 if [ -f ${CLUSTER_CONFIG} ]; then
     echo "Updating my IP to ${POD_IP} in ${CLUSTER_CONFIG}"
     sed -i.bak -e "/myself/ s/ .*:6379@16379/ ${POD_IP}:6379@16379/" ${CLUSTER_CONFIG}
+    grep myself ${CLUSTER_CONFIG} | grep master
+    if [ $? -eq "0" ]; then
+        echo "Waiting 20 seconds for the failover"
+        sleep 20
+    fi
 fi
-echo "Setting in ${REDIS_CONFIG} cluster-announce-ip ${POD_IP}"
+echo "Creating config file ${REDIS_DST_CONFIG} from  ${REDIS_SRC_CONFIG}"
 cp ${REDIS_SRC_CONFIG} ${REDIS_DST_CONFIG}
+echo "Setting in ${REDIS_DST_CONFIG} cluster-announce-ip ${POD_IP}"
 echo "cluster-announce-ip ${POD_IP}" >> ${REDIS_DST_CONFIG}
 exec "$@"`
 
