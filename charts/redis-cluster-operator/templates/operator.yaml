@@ -47,7 +47,7 @@ spec:
         - name: redisconf
           configMap:
             name: redis-admin
-            
+
 ---
 apiVersion: v1
 kind: ConfigMap
