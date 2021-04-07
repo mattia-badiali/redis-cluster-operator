@@ -181,7 +181,7 @@ func getRedisCommand(cluster *redisv1alpha1.DistributedRedisCluster, password *c
 		"/etc/redis.conf",
 		"--cluster-enabled yes",
 		"--cluster-config-file /data/nodes.conf",
-		"--dir /data"
+		"--dir /data",
 	}
 	if password != nil {
 		cmd = append(cmd, fmt.Sprintf("--requirepass '$(%s)'", redisv1alpha1.PasswordENV),
