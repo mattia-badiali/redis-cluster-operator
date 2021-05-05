@@ -70,10 +70,10 @@ if [ -f ${CLUSTER_CONFIG} ]; then
         fi
     fi
 fi
-echo "Creating config file ${REDIS_DST_CONFIG} from  ${REDIS_SRC_CONFIG}"
-echo "Setting in ${REDIS_DST_CONFIG} cluster-announce-ip ${POD_IP}"
-echo "cluster-announce-ip ${POD_IP}" >> ${REDIS_DST_CONFIG}
-echo "include ${REDIS_SRC_CONFIG}" >> ${REDIS_DST_CONFIG}
+#echo "Creating config file ${REDIS_DST_CONFIG} from  ${REDIS_SRC_CONFIG}"
+#echo "Setting in ${REDIS_DST_CONFIG} cluster-announce-ip ${POD_IP}"
+#echo "cluster-announce-ip ${POD_IP}" >> ${REDIS_DST_CONFIG}
+#echo "include ${REDIS_SRC_CONFIG}" >> ${REDIS_DST_CONFIG}
 exec "$@"`
 
 	redisConfContent := generateRedisConfContent(cluster.Spec.Config)
