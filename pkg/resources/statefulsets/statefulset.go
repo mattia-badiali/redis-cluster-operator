@@ -180,7 +180,6 @@ func getRedisCommand(cluster *redisv1alpha1.DistributedRedisCluster, password *c
 		"redis-server",
 		"/etc/redis.conf",
 		"--cluster-enabled yes",
-		"--cluster-announce-ip ${POD_IP}",
 		"--cluster-config-file /data/nodes.conf",
 		"--dir /data",
 	}
