@@ -49,7 +49,6 @@ redis:
   #      - ALL
   config:
     appendonly: "no"
-    save: ""
   resources:
     limits:
       cpu: 2
