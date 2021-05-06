@@ -69,7 +69,7 @@ if [ -f ${CLUSTER_CONFIG} ]; then
     fi
 fi
 
-exec "$@" "--cluster-announce-ip ${POD_IP}"
+exec "$@" "--cluster-announce-ip ${POD_IP}"`
 
 	redisConfContent := generateRedisConfContent(cluster.Spec.Config)
 
