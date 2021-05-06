@@ -2,6 +2,21 @@ apiVersion: v1
 entries:
   empirix-redis-cluster:
   - apiVersion: v2
+    appVersion: 0.4.2
+    created: "2021-05-06T16:13:26.274303033Z"
+    dependencies:
+    - condition: redis-cluster-operator.install
+      name: redis-cluster-operator
+      repository: file://../redis-cluster-operator/
+      version: 0.4.0
+    description: A Helm chart for Kubernetes
+    digest: ce37a70469f5f7ca6d08867cbe2692b905f3d48650555ba82fc0cd241c6d6c95
+    name: empirix-redis-cluster
+    type: application
+    urls:
+    - https://github.com/mattia-badiali/redis-cluster-operator/releases/download/empirix-redis-cluster-0.4.2/empirix-redis-cluster-0.4.2.tgz
+    version: 0.4.2
+  - apiVersion: v2
     appVersion: 0.4.1
     created: "2021-05-06T16:07:21.6056193Z"
     dependencies:
@@ -104,6 +119,16 @@ entries:
     version: 0.1.0
   redis-cluster-operator:
   - apiVersion: v2
+    appVersion: 0.4.2
+    created: "2021-05-06T16:13:26.415902807Z"
+    description: A Helm chart for Redis cluster operator deployment
+    digest: e711723a4745a17f324d58f25c3356aa8231f90d16a40ecd481e5865b38407b8
+    name: redis-cluster-operator
+    type: application
+    urls:
+    - https://github.com/mattia-badiali/redis-cluster-operator/releases/download/redis-cluster-operator-0.4.2/redis-cluster-operator-0.4.2.tgz
+    version: 0.4.2
+  - apiVersion: v2
     appVersion: 0.4.0
     created: "2021-05-06T08:19:14.151230736Z"
     description: A Helm chart for Redis cluster operator deployment
@@ -163,4 +188,4 @@ entries:
     urls:
     - https://github.com/mattia-badiali/redis-cluster-operator/releases/download/redis-cluster-operator-0.1.0/redis-cluster-operator-0.1.0.tgz
     version: 0.1.0
-generated: "2021-05-06T16:07:21.605649202Z"
+generated: "2021-05-06T16:13:26.415950307Z"
