@@ -2,7 +2,6 @@ operator:
   backup_enabled: "false"
   name: "redis-cluster-operator"
   replicas: 1
-  service_account_name: "redis-cluster-operator"
   clusterScoped: true
   image_source: "mttbadiali/redis-cluster-operator"
   image_tag: "latest"
@@ -29,9 +28,4 @@ operator:
 
 data:
   redis_conf: |-
-    rename-command BGSAVE pp14qluk
-    rename-command DEBUG 8a4insyv
-    rename-command SAVE 6on30p6z
-    rename-command SHUTDOWN dvui0opr
-    rename-command SLAVEOF xwxvcw36
-    rename-command BGREWRITEAOF www07fko
+

@@ -69,7 +69,7 @@ redis:
     enabled: false
     value: "Empirix123"
   # default is preferredAntiAffinity
-  requiredAntiAffinity: true
+  requiredAntiAffinity: false
   annotations: {}
   #    sidecar.istio.io/inject: "false"
   envVars: []

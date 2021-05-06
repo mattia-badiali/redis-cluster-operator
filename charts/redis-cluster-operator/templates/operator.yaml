@@ -1,20 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ .Values.operator.name }}
+  name: {{ include "redis-cluster-operator.fullname" .}}
 spec:
   replicas: {{ .Values.operator.replicas }}
   selector:
     matchLabels:
-      name: {{ .Values.operator.name }}
+      name:  {{ include "redis-cluster-operator.fullname" .}}
   template:
     metadata:
       labels:
-        name: {{ .Values.operator.name }}
+        name:  {{ include "redis-cluster-operator.fullname" .}}
     spec:
       imagePullSecrets:
         {{- toYaml .Values.operator.imagePullSecret | nindent 8 }}
-      serviceAccountName: {{ .Values.operator.service_account_name }}
+      serviceAccountName:  {{ include "redis-cluster-operator.fullname" .}}
       securityContext:
         {{- .Values.operator.podsecurityContext | toYaml | nindent 8 }}
       containers:
@@ -39,20 +39,20 @@ spec:
                 fieldRef:
                   fieldPath: metadata.name
             - name: OPERATOR_NAME
-              value: {{ .Values.operator.name | quote }}
+              value: {{ include "redis-cluster-operator.fullname" . | quote }}
           volumeMounts:
             - name: redisconf
               mountPath: /etc/redisconf
       volumes:
         - name: redisconf
           configMap:
-            name: redis-admin
+            name:  {{ include "redis-cluster-operator.fullname" .}}-admin
 
 ---
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: redis-admin
+  name:  {{ include "redis-cluster-operator.fullname" .}}-admin
 data:
   redis.conf: |- 
     {{- .Values.data.redis_conf | nindent 4 }}
