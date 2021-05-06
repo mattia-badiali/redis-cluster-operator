@@ -1,4 +1,4 @@
-apiVersion: redis.kun/v1alpha1
+apiVersion: redis.kun/v1
 kind: DistributedRedisCluster
 metadata:
   annotations:
